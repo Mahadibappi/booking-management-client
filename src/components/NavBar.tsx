@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
               Booking
             </span>
           </a>
-          <ul className="flex items-center hidden space-x-6 lg:flex mx-10">
+          <ul className="flex items-center  space-x-6 lg:flex mx-10">
             <li>
               <a
                 href="/"

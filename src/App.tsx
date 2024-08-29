@@ -1,12 +1,10 @@
 import "./App.css";
-import Banner from "./components/Banner";
-import NavBar from "./components/NavBar";
+import Main from "./components/Main";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Banner />
+      <Main />
     </>
   );
 }
