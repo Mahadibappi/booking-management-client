@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
           >
             <img src={logo} alt="logo" className="w-12 h-8 rounded-sm " />
             <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
-              Booking
+              SportHunt
             </span>
           </a>
           <ul className="flex items-center  space-x-6 lg:flex mx-10">
