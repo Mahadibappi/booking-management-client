@@ -3,7 +3,7 @@ import React from "react";
 const WorkFlow: React.FC = () => {
   return (
     <div>
-      <h2 className="text-center text-3xl font-serif font-semibold mt-10">
+      <h2 className="text-center text-3xl font-serif font-semibold mt-6">
         Endless Possibilities
       </h2>
       <p className="text-center text-sm font-serif  mt-2">
