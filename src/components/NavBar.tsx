@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo-2.jpg";
+import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -104,9 +105,11 @@ const NavBar: React.FC = () => {
           </div>
 
           <div className="flex space-x-2">
-            <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300">
-              Login
-            </button>
+            <Link to={"/login"}>
+              <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300">
+                Login
+              </button>
+            </Link>
             <button className="px-4 py-2 text-blue-600 bg-white border border-blue-600 rounded-lg hover:bg-blue-100 transition duration-300">
               Register
             </button>
