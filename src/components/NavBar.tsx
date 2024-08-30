@@ -16,10 +16,10 @@ const NavBar: React.FC = () => {
           >
             <img src={logo} alt="logo" className="w-12 h-8 rounded-sm " />
             <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
-              SportHunt
+              SportHub
             </span>
           </a>
-          <ul className="flex items-center  space-x-6 lg:flex mx-10">
+          <ul className="flex items-center  space-x-6 lg:flex mx-10 md:hidden sm:hidden ">
             <li>
               <a
                 href="/"
@@ -113,14 +113,14 @@ const NavBar: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:hidden md:hidden">
+        <div className="lg:hidden ">
           <button
             aria-label="Open Menu"
             title="Open Menu"
-            className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+            className="p-2 ml-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50    "
             onClick={() => setIsMenuOpen(true)}
           >
-            <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+            <svg className="w-6  text-slate-300 " viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -136,7 +136,7 @@ const NavBar: React.FC = () => {
             </svg>
           </button>
           {isMenuOpen && (
-            <div className="absolute top-0 left-0 w-full">
+            <div className=" z-50 absolute top-0 left-0 w-full">
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -161,7 +161,9 @@ const NavBar: React.FC = () => {
                         <rect x="14" y="1" width="7" height="6" />
                         <rect x="14" y="11" width="7" height="12" />
                       </svg>
-                      <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase"></span>
+                      <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
+                        SportHub
+                      </span>
                     </a>
                   </div>
                   <div>

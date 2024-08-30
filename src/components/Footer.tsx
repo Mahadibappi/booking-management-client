@@ -26,7 +26,7 @@ const Footer = () => {
       <footer className="footer dark:bg-gray-900 text-white border-base-300 border-t px-10 py-4">
         <aside className="grid-flow-col items-center">
           <p>
-            SportHunt @ all right reserved.
+            SportHub @ all right reserved.
             <br />
             Providing reliable tech since 2024
           </p>

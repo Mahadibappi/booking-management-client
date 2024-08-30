@@ -12,7 +12,7 @@ const Banner = () => {
           <h2 className=" text-7xl text-slate-300 bg-clip-text  ">
             Build custom booking experiences
           </h2>
-          <p className=" text-slate-300 text-clip text-2xl mt-10">
+          <p className=" text-slate-300 text-clip text-2xl mt-6 px-2 ">
             It's time to simplify your sports facility booking. Easy for users
             to book, easy for you to manage.
             <br /> Online booking software trusted by over 3,000 sports
