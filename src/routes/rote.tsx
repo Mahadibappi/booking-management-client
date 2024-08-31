@@ -4,6 +4,7 @@ import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import FacilityList from "../pages/FacilityList";
+import FacilityDetail from "../pages/FacilityDetail";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/facility",
         element: <FacilityList />,
+      },
+      {
+        path: "/facility/:id",
+        element: <FacilityDetail />,
       },
     ],
   },
