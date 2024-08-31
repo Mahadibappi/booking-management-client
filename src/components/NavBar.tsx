@@ -42,14 +42,14 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                to={"/booking"}
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Booking
-              </a>
+              </Link>
             </li>
             <li>
               <a

@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import FacilityList from "../pages/FacilityList";
 import FacilityDetail from "../pages/FacilityDetail";
+import Booking from "../pages/Booking";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/facility/:id",
         element: <FacilityDetail />,
+      },
+      {
+        path: "/booking",
+        element: <Booking />,
       },
     ],
   },
