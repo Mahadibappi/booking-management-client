@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Booking = () => {
   // State to manage form data and selected facility
@@ -120,9 +121,11 @@ const Booking = () => {
       </div>
 
       {/* Proceed to Pay Button */}
-      <button className="w-full p-4 bg-gray-600 text-white rounded">
-        Proceed to Pay
-      </button>
+      <Link to={"/payment"}>
+        <button className="w-full p-4 bg-gray-600 text-white rounded">
+          Proceed to Pay
+        </button>
+      </Link>
     </div>
   );
 };

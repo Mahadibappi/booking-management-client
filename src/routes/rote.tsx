@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import FacilityList from "../pages/FacilityList";
 import FacilityDetail from "../pages/FacilityDetail";
 import Booking from "../pages/Booking";
+import Payment from "../pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/booking",
         element: <Booking />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },
