@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiLogoGoogle } from "react-icons/bi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 // import {
 //   signInFail,
 //   signInSuccess,
@@ -15,9 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
   const [visible, setVisible] = useState("");
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const { loading, error } = useSelector((state) => state.user);
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -120,13 +120,14 @@ const Login = () => {
               type="submit"
               className=" border-white-500 group m-auto  inline-flex h-12 w-[320px] items-center justify-center space-x-2 rounded-3xl border px-4 py-2 transition-colors duration-300 hover:border-black hover:bg-blue-800 focus:outline-none text-white font-bold"
             >
-              {loading ? "Loading" : "Login"}
+              {/* {loading ? "Loading" : "Login"} */}
+              Login
             </button>
           </form>
           <p className="gap-2 text-center text-white">
             Don't have an account?
             <Link
-              to={"/signup"}
+              to={"/register"}
               className="font-semibold text-sky-400 hover:text-blue-800"
             >
               Sign up
@@ -137,7 +138,7 @@ const Login = () => {
               <BiLogoGoogle />
             </span>
             <span className="text-sm font-medium text-white">
-              <Oauth />
+              {/* <Oauth /> */}
             </span>
           </Link>
         </div>

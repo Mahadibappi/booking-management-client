@@ -48,7 +48,7 @@ const Register = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="relative h-[650px] w-[400px] overflow-hidden rounded-3xl">
+      <div className="relative h-[650px] w-[450px] overflow-hidden rounded-3xl">
         <div
           className="h-full w-full bg-[100%] "
           style={{
@@ -59,7 +59,7 @@ const Register = () => {
         ></div>
 
         <div className="absolute bottom-0 flex h-3/4 w-full flex-col rounded-t-3xl bg-black bg-opacity-20 shadow ">
-          <h2 className="text-center text-white text-2xl mt-[-80px]">
+          <h2 className="text-center text-white text-2xl mt-[-130px] my-[-40px]">
             Register As New User
           </h2>
           <form
@@ -84,6 +84,25 @@ const Register = () => {
                 Full Name
               </label>
             </div>
+            <div className="group relative">
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                autoComplete="phone"
+                required
+                onChange={handleChange}
+                className="peer h-12 w-full rounded-3xl bg-gray-100 px-4 text-sm outline-none "
+              />
+
+              <label
+                htmlFor="phone"
+                className="absolute left-1/3 top-0 flex h-full transform items-center pl-2 text-base transition-all duration-300 group-focus-within:-top-7 group-focus-within:h-1/2 group-focus-within:pl-0 group-focus-within:text-base group-focus-within:text-white peer-valid:-top-7 peer-valid:h-1/2 peer-valid:pl-0 peer-valid:text-base peer-valid:text-white"
+              >
+                Phone Number
+              </label>
+            </div>
+
             <div className="group relative">
               <input
                 type="text"
@@ -129,6 +148,24 @@ const Register = () => {
                     onClick={() => setVisible(true)}
                   />
                 )}
+              </label>
+            </div>
+            <div className="group relative">
+              <input
+                type="text"
+                name="role"
+                id="role"
+                autoComplete="role"
+                required
+                onChange={handleChange}
+                className="peer h-12 w-full rounded-3xl bg-gray-100 px-4 text-sm outline-none "
+              />
+
+              <label
+                htmlFor="role"
+                className="absolute left-1/3 top-0 flex h-full transform items-center pl-2 text-base transition-all duration-300 group-focus-within:-top-7 group-focus-within:h-1/2 group-focus-within:pl-0 group-focus-within:text-base group-focus-within:text-white peer-valid:-top-7 peer-valid:h-1/2 peer-valid:pl-0 peer-valid:text-base peer-valid:text-white"
+              >
+                Admin or User
               </label>
             </div>
 

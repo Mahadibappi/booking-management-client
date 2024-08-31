@@ -110,9 +110,11 @@ const NavBar: React.FC = () => {
                 Login
               </button>
             </Link>
-            <button className="px-4 py-2 text-blue-600 bg-white border border-blue-600 rounded-lg hover:bg-blue-100 transition duration-300">
-              Register
-            </button>
+            <Link to={"/register"}>
+              <button className="px-4 py-2 text-blue-600 bg-white border border-blue-600 rounded-lg hover:bg-blue-100 transition duration-300">
+                Register
+              </button>
+            </Link>
           </div>
         </div>
 
