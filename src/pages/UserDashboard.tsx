@@ -2,10 +2,14 @@ import React from "react";
 
 const UserDashboard: React.FC = () => {
   return (
-    <div className="relative mx-auto p-10 mt-10 shadow-md sm:rounded-lg">
-      <div className="bg-indigo-500 text-white  p-10 text-center m-5">
-        Welcome to User Dashboard
+    <div className="relative mx-auto p-10 mt-6 shadow-md sm:rounded-lg">
+      <div className="w-1/2 mx-auto bg-gradient-to-r from-[#a2c280] via-[#7487d0] to-[#4990e2] text-white p-16 text-center m-5 rounded-md shadow-lg">
+        <h3 className="text-4xl font-bold mb-4">
+          Welcome <span className="text-[#f4e7d3]">Mahadi</span>
+        </h3>
+        <p className="text-lg">Here see your booking list</p>
       </div>
+
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
