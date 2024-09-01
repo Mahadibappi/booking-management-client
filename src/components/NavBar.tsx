@@ -72,24 +72,24 @@ const NavBar: React.FC = () => {
               </a>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                to={"/about"}
                 aria-label="About us"
                 title="About us"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                to={"/contact"}
                 aria-label="About us"
                 title="About us"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

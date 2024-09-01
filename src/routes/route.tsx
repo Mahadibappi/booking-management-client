@@ -7,6 +7,8 @@ import FacilityList from "../pages/FacilityList";
 import FacilityDetail from "../pages/FacilityDetail";
 import Booking from "../pages/Booking";
 import Payment from "../pages/Payment";
+import About from "../components/About";
+import Contact from "../components/Contact";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

@@ -124,7 +124,7 @@ const Booking = () => {
 
       <Link to={"/payment"}>
         <button className="w-full p-4 bg-gray-600 text-white rounded">
-          Proceed to Pay
+          Confirm Booking
         </button>
       </Link>
     </div>
