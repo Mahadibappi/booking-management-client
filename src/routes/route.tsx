@@ -9,6 +9,7 @@ import Booking from "../pages/Booking";
 import Payment from "../pages/Payment";
 import About from "../components/About";
 import Contact from "../components/Contact";
+import UserDashboard from "../pages/UserDashboard";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/user",
+        element: <UserDashboard />,
       },
       {
         path: "/about",
