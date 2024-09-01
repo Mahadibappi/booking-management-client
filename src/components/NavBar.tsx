@@ -9,8 +9,8 @@ const NavBar: React.FC = () => {
     <div className="px-10 py-5 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen md:px-24 lg:px-8 dark:bg-gray-900 text-white">
       <div className="relative flex items-center justify-between">
         <div className="flex items-center">
-          <a
-            href="/"
+          <Link
+            to={"/"}
             aria-label="Company"
             title="Company"
             className="inline-flex items-center mr-8"
@@ -19,17 +19,17 @@ const NavBar: React.FC = () => {
             <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
               SportHub
             </span>
-          </a>
+          </Link>
           <ul className="flex items-center  space-x-6 lg:flex mx-10 md:hidden sm:hidden ">
             <li>
-              <a
-                href="/"
+              <Link
+                to={"/"}
                 aria-label="Our product"
                 title="Our product"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <Link
@@ -52,14 +52,14 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                to={"/admin"}
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Admin
-              </a>
+              </Link>
             </li>
             <li>
               <Link

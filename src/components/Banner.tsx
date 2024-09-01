@@ -19,17 +19,14 @@ const Banner = () => {
             <br /> Online booking software trusted by over 3,000 sports
             facilities worldwide.
           </p>
-          <div className="mt-12">
-            <a
-              href="#_"
-              className="relative rounded px-5 py-3 overflow-hidden group bg-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-blue-400 transition-all ease-out duration-300"
-            >
-              <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-              <Link to={"/booking"}>
-                <span className="relative text-xl">Book Now</span>
-              </Link>
-            </a>
-          </div>
+          <Link
+            to={"/booking"}
+            className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-blue-500 rounded-lg group mt-16"
+          >
+            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+            <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+            <span className="relative font-semibold font-serif">Book Now</span>
+          </Link>
         </div>
       </div>
     </div>

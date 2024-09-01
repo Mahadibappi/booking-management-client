@@ -10,6 +10,10 @@ import Payment from "../pages/Payment";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import UserDashboard from "../pages/UserDashboard";
+import AdminDashboard from "../pages/AdminDashboard";
+import CreateFacility from "../pages/CreateFacility";
+import AllBooking from "../pages/AllBooking";
+import CreateAdmin from "../pages/CreateAdmin";
 
 const router = createBrowserRouter([
   {
@@ -56,7 +60,26 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/admin",
+        element: <AdminDashboard />,
+        children: [
+          {
+            path: "create-facility",
+            element: <CreateFacility />,
+          },
+          {
+            path: "all-booking",
+            element: <AllBooking />,
+          },
+          {
+            path: "create-admin",
+            element: <CreateAdmin />,
+          },
+        ],
+      },
     ],
   },
 ]);
+
 export default router;
