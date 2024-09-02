@@ -3,13 +3,6 @@ import React from "react";
 const AllBooking: React.FC = () => {
   return (
     <div className="relative mx-auto  mt-6 ">
-      <div
-        className="w-1/2 mx-auto bg-gradient-to-r from-[#a2c280] via-[#7487d0] to-[#4990e2] text-white 
-        p-6 text-center m-5 rounded-md shadow-lg"
-      >
-        <h3 className="text-2xl font-bold mb-4">All booking list Here</h3>
-      </div>
-
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>

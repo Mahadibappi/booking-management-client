@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const CreateFacility = () => {
+const CreateFacility: React.FC = () => {
   const [facilityData, setFacilityData] = useState({
     name: "",
     email: "",
-
+    password: "",
+    role: "",
     image: null,
   });
 
@@ -67,6 +68,38 @@ const CreateFacility = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
             placeholder="Enter facility email"
+          ></input>
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 font-medium mb-2"
+            htmlFor="description"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            value={facilityData.password}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
+            placeholder="Enter facility password"
+          ></input>
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 font-medium mb-2"
+            htmlFor="description"
+          >
+            Role
+          </label>
+          <input
+            id="role"
+            name="role"
+            value={facilityData.role}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
+            placeholder="Enter facility role"
           ></input>
         </div>
 
