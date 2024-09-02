@@ -20,7 +20,7 @@ const NavBar: React.FC = () => {
               SportHub
             </span>
           </Link>
-          <ul className="flex items-center  space-x-6 lg:flex mx-10 md:hidden sm:hidden ">
+          <ul className="flex items-center  space-x-6 lg:flex mx-10 md:hidden sm:hidden navList">
             <li>
               <Link
                 to={"/"}

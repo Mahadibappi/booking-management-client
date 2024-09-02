@@ -43,7 +43,7 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container mx-auto bg-gray-900 rounded-lg shadow-md text-white mt-20 p-20">
+      <div className="container mx-auto bg-gray-900 w-[600px] rounded-lg shadow-md text-white mt-20 p-20">
         <div className="md:flex">
           <div className="w-full p-4">
             {paymentSuccess && (
@@ -56,10 +56,10 @@ const CheckoutForm = () => {
               </div>
             )}
             <div className="mb-4 text-center">
-              <h2 className="text-2xl font-semibold">Payment Information</h2>
+              <h2 className="text-2xl font-semibold">Confirm Payment </h2>
             </div>
             <div className="mb-4 tex-lg text-center text-white">
-              <p className=" mb-2 ">Name: Tennis court</p>
+              <p className=" mb-2 ">Facility : Tennis court</p>
               <p className=" mb-2 ">
                 {/* Price: ${Math.floor(item?.price * quantity)} */}
                 Total Price : 200$

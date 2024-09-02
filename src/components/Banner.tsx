@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import banner from "../assets/sport5.jpg";
 const Banner = () => {
   return (
-    <div className="relative h-[600px]">
+    <div className="relative h-[600px] banner">
       <img
         src={banner}
         className="absolute inset-0 object-cover w-full h-full"
         alt=""
       />
-      <div className=" relative bg-gray-950 bg-opacity-70 h-[600px]">
+      <div className=" relative bg-gray-950 bg-opacity-70 h-[600px] ">
         <div className=" relative top-40 text-center ">
           <h2 className=" text-7xl text-slate-300 bg-clip-text  ">
             Build custom booking experiences

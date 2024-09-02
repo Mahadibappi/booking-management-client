@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and (max-width: 600px) {
+  .navList {
+    visibility: hidden;
+  }
+  .banner h2 {
+    font-size: 45px;
+  }
+  .banner p {
+    font-size: 18px;
+  }
+}
