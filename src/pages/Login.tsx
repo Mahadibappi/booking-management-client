@@ -1,64 +1,55 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiLogoGoogle } from "react-icons/bi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   signInFail,
-//   signInSuccess,
-//   singInStart,
-// } from "../redux/user/userSlice";
-// import Oauth from "../components/Oauth.jsx";
+import { useAppDispatch } from "../redux/hooks";
+import { useLoginMutation } from "../redux/auth/AuthApi";
+import { loginUser } from "../redux/auth/AuthSlice";
+export type TFormData = {
+  email: string;
+  password: string;
+};
+const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [visible, setVisible] = useState<boolean>(false);
+  const [formData, setFormData] = useState<TFormData>({
+    email: "",
+    password: "",
+  });
 
-const Login = () => {
-  const [visible, setVisible] = useState("");
-  const [formData, setFormData] = useState({});
-  // const { loading, error } = useSelector((state) => state.user);
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const [login] = useLoginMutation();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     try {
-  //       dispatch(singInStart());
-  //       const url = "http://localhost:5000/api/user/signin";
-  //       const res = await fetch(url, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(formData),
-  //         credentials: "include",
-  //       });
-  //       const data = await res.json();
-  //       if (data.success === false) {
-  //         dispatch(signInFail(data.message));
-  //         return;
-  //       }
-  //       dispatch(signInSuccess(data));
-  //       navigate("/");
-  //     } catch (error) {
-  //       dispatch(signInFail(error.message));
-  //     }
-  //   };
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      const res = await login(formData).unwrap();
+      console.log(res);
+      dispatch(loginUser(res));
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="relative h-[600px] w-[400px] overflow-hidden rounded-3xl">
         <div
-          className="h-full w-full bg-[100%] "
+          className="h-full w-full bg-[100%]"
           style={{
             backgroundImage: `url(
-              https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg?w=900&t=st=1695564871~exp=1695565471~hmac=4fbe38826442c0a07cec3412127bd88d230f1cee0186b9038a1a1e4046ee4c85
+              'https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg?w=900&t=st=1695564871~exp=1695565471~hmac=4fbe38826442c0a07cec3412127bd88d230f1cee0186b9038a1a1e4046ee4c85'
             )`,
           }}
         ></div>
@@ -68,19 +59,19 @@ const Login = () => {
             Login to Your Account
           </h2>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className="mt-10 space-y-8 px-10 py-10 text-center"
           >
             <div className="group relative">
               <input
-                type="text"
+                type="email"
                 id="email"
+                value={formData.email}
                 autoComplete="email"
                 onChange={handleChange}
                 required
-                className="peer h-12 w-full rounded-3xl bg-gray-100 px-4 text-sm outline-none "
+                className="peer h-12 w-full rounded-3xl bg-gray-100 px-4 text-sm outline-none"
               />
-
               <label
                 htmlFor="email"
                 className="absolute left-1/3 top-0 flex h-full transform items-center pl-2 text-base transition-all duration-300 group-focus-within:-top-7 group-focus-within:h-1/2 group-focus-within:pl-0 group-focus-within:text-base group-focus-within:text-white peer-valid:-top-7 peer-valid:h-1/2 peer-valid:pl-0 peer-valid:text-base peer-valid:text-white"
@@ -92,6 +83,7 @@ const Login = () => {
               <input
                 type={visible ? "text" : "password"}
                 id="password"
+                value={formData.password}
                 onChange={handleChange}
                 required
                 className="peer h-12 w-full rounded-3xl bg-gray-100 px-4 text-sm outline-none"
@@ -104,13 +96,13 @@ const Login = () => {
                 {visible ? (
                   <AiOutlineEye
                     size={20}
-                    className=" mx-20 "
+                    className="mx-20 cursor-pointer"
                     onClick={() => setVisible(false)}
                   />
                 ) : (
                   <AiOutlineEyeInvisible
                     size={20}
-                    className=" mx-20 "
+                    className="mx-20 cursor-pointer"
                     onClick={() => setVisible(true)}
                   />
                 )}
@@ -118,27 +110,27 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className=" border-white-500 group m-auto  inline-flex h-12 w-[320px] items-center justify-center space-x-2 rounded-3xl border px-4 py-2 transition-colors duration-300 hover:border-black hover:bg-blue-800 focus:outline-none text-white font-bold"
+              className="m-auto inline-flex h-12 w-[320px] items-center justify-center space-x-2 rounded-3xl border border-white-500 px-4 py-2 transition-colors duration-300 hover:border-black hover:bg-blue-800 focus:outline-none text-white font-bold"
             >
-              {/* {loading ? "Loading" : "Login"} */}
               Login
             </button>
           </form>
           <p className="gap-2 text-center text-white">
             Don't have an account?
             <Link
-              to={"/register"}
+              to="/register"
               className="font-semibold text-sky-400 hover:text-blue-800"
             >
               Sign up
             </Link>
           </p>
-          <Link className="border-white-500 group m-auto my-5 inline-flex h-12 w-[320px] items-center justify-center space-x-2 rounded-3xl border px-4 py-2 transition-colors duration-300 hover:border-black hover:bg-blue-800 focus:outline-none">
-            <span className="h-2.6 w-5 fill-current text-white">
-              <BiLogoGoogle />
-            </span>
+          <Link
+            to="#"
+            className="group m-auto my-5 inline-flex h-12 w-[320px] items-center justify-center space-x-2 rounded-3xl border border-white-500 px-4 py-2 transition-colors duration-300 hover:border-black hover:bg-blue-800 focus:outline-none"
+          >
+            <BiLogoGoogle className="h-2.6 w-5 fill-current text-white" />
             <span className="text-sm font-medium text-white">
-              {/* <Oauth /> */}
+              {/* Oauth */}
             </span>
           </Link>
         </div>
