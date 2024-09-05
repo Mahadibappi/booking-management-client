@@ -3,52 +3,65 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useSignupMutation } from "../redux/auth/AuthApi";
+export type TUser = {
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
+  role: string;
+  address: string;
+};
+const Register: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [formData, setFormData] = useState<TUser>({
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    role: "",
+    address: "",
+  });
 
-const Register = () => {
-  const [visible, setVisible] = useState<boolean>();
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const Navigate = useNavigate();
+  const [singup] = useSignupMutation();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const url = "http://localhost:5000/api/user/signup";
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
+      const data = await singup(formData).unwrap();
+      console.log(data);
+
+      setLoading(false);
       if (data.success === false) {
-        setLoading(false);
         setError(data.message);
         return;
       }
-      setLoading(false);
       setError(null);
       Navigate("/login");
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+
+      if (error instanceof Error) {
+        setError(error.message);
+      }
       console.log(error);
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="relative h-[650px] w-[450px] overflow-hidden rounded-3xl">
+      <div className="relative h-[750px] w-[500px] overflow-hidden rounded-3xl">
         <div
           className="h-full w-full bg-[100%] "
           style={{
@@ -68,6 +81,7 @@ const Register = () => {
           >
             <div className="group relative">
               <input
+                value={formData.name}
                 type="text"
                 name="name"
                 id="name"
@@ -86,6 +100,7 @@ const Register = () => {
             </div>
             <div className="group relative">
               <input
+                value={formData.phone}
                 type="text"
                 name="phone"
                 id="phone"
@@ -105,6 +120,7 @@ const Register = () => {
 
             <div className="group relative">
               <input
+                value={formData.email}
                 type="text"
                 name="email"
                 id="email"
@@ -123,6 +139,7 @@ const Register = () => {
             </div>
             <div className="group relative">
               <input
+                value={formData.password}
                 type={visible ? "text" : "password"}
                 name="password"
                 id="password"
@@ -149,9 +166,14 @@ const Register = () => {
                   />
                 )}
               </label>
+
+              {error ? (
+                <p className="mt-1 text-sm text-red-500">password error</p>
+              ) : null}
             </div>
             <div className="group relative">
               <input
+                value={formData.role}
                 type="text"
                 name="role"
                 id="role"
@@ -165,7 +187,26 @@ const Register = () => {
                 htmlFor="role"
                 className="absolute left-1/3 top-0 flex h-full transform items-center pl-2 text-base transition-all duration-300 group-focus-within:-top-7 group-focus-within:h-1/2 group-focus-within:pl-0 group-focus-within:text-base group-focus-within:text-white peer-valid:-top-7 peer-valid:h-1/2 peer-valid:pl-0 peer-valid:text-base peer-valid:text-white"
               >
-                Admin or User
+                Role
+              </label>
+            </div>
+            <div className="group relative">
+              <input
+                value={formData.address}
+                type="text"
+                name="address"
+                id="address"
+                autoComplete="address"
+                required
+                onChange={handleChange}
+                className="peer h-12 w-full rounded-3xl bg-gray-100 px-4 text-sm outline-none "
+              />
+
+              <label
+                htmlFor="address"
+                className="absolute left-1/3 top-0 flex h-full transform items-center pl-2 text-base transition-all duration-300 group-focus-within:-top-7 group-focus-within:h-1/2 group-focus-within:pl-0 group-focus-within:text-base group-focus-within:text-white peer-valid:-top-7 peer-valid:h-1/2 peer-valid:pl-0 peer-valid:text-base peer-valid:text-white"
+              >
+                Location
               </label>
             </div>
 

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { createSlice } from "@reduxjs/toolkit";
 export type TUser = {
-  email: "string";
-  password: "string";
+  email: string;
+  password: string;
 };
 type TInitialState = {
   user: null | TUser;
@@ -19,10 +19,15 @@ const AuthSlice = createSlice({
   reducers: {
     loginUser: (state, action) => {
       const { user, token } = action.payload;
-      (state.user = user), (state.token = token);
+      state.user = user;
+      state.token = token;
+    },
+    logoutUser: (state) => {
+      state.user = null;
+      state.token = null;
     },
   },
 });
 
-export const { loginUser } = AuthSlice.actions;
+export const { loginUser, logoutUser } = AuthSlice.actions;
 export default AuthSlice.reducer;
