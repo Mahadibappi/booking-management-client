@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useCreateFacilityMutation } from "../redux/features/facility/FacilityApi";
 
 const CreateFacility = () => {
   const [facilityData, setFacilityData] = useState({
@@ -8,13 +9,14 @@ const CreateFacility = () => {
     location: "",
     image: null,
   });
+  const [create] = useCreateFacilityMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFacilityData({
-      ...facilityData,
-      [name]: value,
-    });
+    setFacilityData((prevData) => ({
+      ...prevData,
+      [name]: name === "pricePerHour" ? Number(value) : value,
+    }));
   };
 
   const handleImageChange = (e) => {
@@ -24,10 +26,14 @@ const CreateFacility = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(facilityData);
+    try {
+      const res = await create(facilityData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

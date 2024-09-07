@@ -4,9 +4,14 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiLogoGoogle } from "react-icons/bi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useLoginMutation } from "../redux/auth/AuthApi";
-import { loginUser } from "../redux/auth/AuthSlice";
+import { loginUser, logoutUser } from "../redux/auth/AuthSlice";
+import { toast } from "sonner";
+
+import { TUser } from "../redux/auth/AuthSlice";
+import verifyToken from "../utils/utils";
+import { RootState } from "../redux/store";
 export type TFormData = {
   email: string;
   password: string;
@@ -19,7 +24,6 @@ const Login: React.FC = () => {
     email: "",
     password: "",
   });
-
   const [login] = useLoginMutation();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,11 +35,22 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+
+    const toastId = toast.loading("Logging in");
+
     try {
       const res = await login(formData).unwrap();
-      console.log(res);
-      dispatch(loginUser(res));
+
+      const user = verifyToken(res.data.token) as TUser;
+
+      dispatch(loginUser({ user: user, token: res.data.token }));
+
+      toast.success("Log in successful", {
+        id: toastId,
+        duration: 2000,
+        position: "top-center",
+      });
+
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -108,6 +123,7 @@ const Login: React.FC = () => {
                 )}
               </label>
             </div>
+
             <button
               type="submit"
               className="m-auto inline-flex h-12 w-[320px] items-center justify-center space-x-2 rounded-3xl border border-white-500 px-4 py-2 transition-colors duration-300 hover:border-black hover:bg-blue-800 focus:outline-none text-white font-bold"

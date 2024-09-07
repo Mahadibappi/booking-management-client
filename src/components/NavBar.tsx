@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import logo from "../assets/logo-2.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { RootState } from "../redux/store";
+import { logoutUser } from "../redux/auth/AuthSlice";
 
 const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { user } = useAppSelector((state: RootState) => state.auth);
+
+  const handleLogOut = async () => {
+    dispatch(logoutUser());
+
+    navigate("/login");
+  };
 
   return (
     <div className="px-10 py-5 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen md:px-24 lg:px-8 dark:bg-gray-900 text-white">
@@ -106,8 +118,11 @@ const NavBar: React.FC = () => {
 
           <div className="flex space-x-2">
             <Link to={"/login"}>
-              <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300">
-                Login
+              <button
+                onClick={handleLogOut}
+                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300"
+              >
+                {user ? "Log Out" : "Log In"}
               </button>
             </Link>
             <Link to={"/register"}>

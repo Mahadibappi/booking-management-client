@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useSignupMutation } from "../redux/auth/AuthApi";
+import { toast } from "sonner";
 export type TUser = {
   name: string;
   email: string;
@@ -37,6 +38,7 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const toastId = toast.loading("Creating User");
     try {
       setLoading(true);
       const data = await singup(formData).unwrap();
@@ -47,6 +49,11 @@ const Register: React.FC = () => {
         setError(data.message);
         return;
       }
+      toast.success("User Registered successful", {
+        id: toastId,
+        duration: 200,
+        position: "top-center",
+      });
       setError(null);
       Navigate("/login");
     } catch (error) {

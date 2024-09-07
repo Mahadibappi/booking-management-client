@@ -1,10 +1,10 @@
 import { baseApi } from "./../../api/BaseApi";
 
-const authApi = baseApi.injectEndpoints({
+const FacilityApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createFacility: builder.mutation({
       query: (facility) => ({
-        url: "/api/facility",
+        url: "/facility",
         method: "POST",
         body: facility,
       }),
@@ -12,4 +12,4 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateFacilityMutation } = authApi;
+export const { useCreateFacilityMutation } = FacilityApi;
