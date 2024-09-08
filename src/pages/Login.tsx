@@ -4,14 +4,14 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiLogoGoogle } from "react-icons/bi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { useLoginMutation } from "../redux/auth/AuthApi";
-import { loginUser, logoutUser } from "../redux/auth/AuthSlice";
+import { loginUser } from "../redux/auth/AuthSlice";
 import { toast } from "sonner";
 
 import { TUser } from "../redux/auth/AuthSlice";
-import verifyToken from "../utils/utils";
-import { RootState } from "../redux/store";
+import verifyToken from "../utils/verifyToken";
+
 export type TFormData = {
   email: string;
   password: string;

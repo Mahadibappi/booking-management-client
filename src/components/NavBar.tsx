@@ -205,44 +205,46 @@ const NavBar: React.FC = () => {
                 <nav>
                   <ul className="space-y-4">
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Home
-                      </a>
+                      <li>
+                        <Link
+                          to={"/"}
+                          aria-label="Our product"
+                          title="Our product"
+                          className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                          Home
+                        </Link>
+                      </li>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to={"/facility"}
                         aria-label="Our product"
                         title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Facility
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to={"/booking"}
                         aria-label="Product pricing"
                         title="Product pricing"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Booking
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to={"/about"}
                         aria-label="About us"
                         title="About us"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        About us
-                      </a>
+                        About
+                      </Link>
                     </li>
                   </ul>
                 </nav>

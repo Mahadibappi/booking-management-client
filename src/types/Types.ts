@@ -6,3 +6,11 @@ export type TUser = {
   role: string;
   address: string;
 };
+
+export type TFacilityData = {
+  name: string;
+  description: string;
+  pricePerHour: number | string;
+  location: string;
+  image: File | string;
+};

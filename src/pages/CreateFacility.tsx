@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useCreateFacilityMutation } from "../redux/features/facility/FacilityApi";
+import { toast } from "sonner";
+import { TFacilityData } from "../types/Types";
 
-const CreateFacility = () => {
-  const [facilityData, setFacilityData] = useState({
+const CreateFacility: React.FC = () => {
+  const [facilityData, setFacilityData] = useState<TFacilityData>({
     name: "",
     description: "",
     pricePerHour: "",
     location: "",
-    image: null,
+    image: "",
   });
+  console.log(facilityData);
   const [create] = useCreateFacilityMutation();
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFacilityData((prevData) => ({
       ...prevData,
@@ -19,18 +24,25 @@ const CreateFacility = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    setFacilityData({
-      ...facilityData,
-      image: e.target.files[0],
-    });
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      setFacilityData((prevData) => ({
+        ...prevData,
+        image: imageUrl,
+      }));
+    }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await create(facilityData);
-      console.log(res);
+      await create(facilityData);
+      toast.success("Facility Created Successfully", {
+        duration: 2000,
+        position: "bottom-right",
+      });
     } catch (error) {
       console.log(error);
     }

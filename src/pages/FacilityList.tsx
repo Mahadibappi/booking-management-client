@@ -5,7 +5,7 @@ const FacilityList: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [priceFilter, setPriceFilter] = useState<number | null>(null);
 
-  const filteredFacilities = facilities.filter((facility) => {
+  const filteredFacilities = facilities?.filter((facility) => {
     const matchesSearchQuery = facility.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
