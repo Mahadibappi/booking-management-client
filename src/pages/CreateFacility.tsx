@@ -11,7 +11,7 @@ const CreateFacility: React.FC = () => {
     location: "",
     image: "",
   });
-  console.log(facilityData);
+
   const [create] = useCreateFacilityMutation();
 
   const handleChange = (
