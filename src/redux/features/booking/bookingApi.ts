@@ -10,13 +10,13 @@ const bookingApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // getAllFacilities: builder.query({
-    //   query: () => "/facility",
-    // }),
+    getAllBookings: builder.query({
+      query: () => "/bookings",
+    }),
     // getFacilityById: builder.query({
     //   query: (id) => `/facility/${id}`,
     // }),
   }),
 });
 
-export const { useCreateBookingMutation } = bookingApi;
+export const { useCreateBookingMutation, useGetAllBookingsQuery } = bookingApi;
