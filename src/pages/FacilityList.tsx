@@ -1,17 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import facilities from "../utils/utils";
+import { useGetAllFacilitiesQuery } from "../redux/features/facility/FacilityApi";
+
 const FacilityList: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [priceFilter, setPriceFilter] = useState<number | null>(null);
 
-  const filteredFacilities = facilities?.filter((facility) => {
-    const matchesSearchQuery = facility.title
+  // Fetch facilities from the API
+  const {
+    data: facilities = [],
+    isLoading,
+    error,
+  } = useGetAllFacilitiesQuery(undefined);
+
+  const filteredFacilities = facilities?.data?.filter((facility: any) => {
+    const matchesSearchQuery = facility.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
-    const matchesFilter = priceFilter ? facility.price <= priceFilter : true;
+    const matchesFilter = priceFilter
+      ? facility.pricePerHour <= priceFilter
+      : true;
     return matchesSearchQuery && matchesFilter;
   });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error loading facilities</p>;
+  }
+
   return (
     <div>
       <h2 className="text-center text-3xl font-serif font-semibold mt-10">
@@ -43,19 +62,19 @@ const FacilityList: React.FC = () => {
 
       <div className="p-20">
         <div className="flex justify-center items-center sm:flex-col md:flex-wrap lg:flex-row gap-4 ">
-          {filteredFacilities.map((facility) => (
+          {filteredFacilities?.map((facility: any) => (
             <div
-              key={facility.id}
+              key={facility._id}
               className="card bg-base-100 image-full w-96 shadow-xl "
             >
               <figure>
-                <img src={facility.imageUrl} alt={facility.title} />
+                <img src={facility.image} alt={facility.title} />
               </figure>
               <div className="card-body flex items-center">
-                <h2 className="card-title">{facility.title}</h2>
-                <p>{facility.price} $ per hour</p>
+                <h2 className="card-title">{facility.name}</h2>
+                <p>{facility.pricePerHour} $ per hour</p>
                 <div className="card-actions justify-center">
-                  <Link to={`/facility/${facility.id}`}>
+                  <Link to={`/facility/${facility._id}`}>
                     <button className="btn btn-primary">View Detail</button>
                   </Link>
                 </div>

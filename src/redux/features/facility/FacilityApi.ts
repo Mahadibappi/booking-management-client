@@ -9,7 +9,18 @@ const FacilityApi = baseApi.injectEndpoints({
         body: facility,
       }),
     }),
+
+    getAllFacilities: builder.query({
+      query: () => "/facility",
+    }),
+    getFacilityById: builder.query({
+      query: (id) => `/facility/${id}`,
+    }),
   }),
 });
 
-export const { useCreateFacilityMutation } = FacilityApi;
+export const {
+  useCreateFacilityMutation,
+  useGetAllFacilitiesQuery,
+  useGetFacilityByIdQuery,
+} = FacilityApi;

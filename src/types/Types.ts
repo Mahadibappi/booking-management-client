@@ -12,5 +12,5 @@ export type TFacilityData = {
   description: string;
   pricePerHour: number | string;
   location: string;
-  image: File | string;
+  image: string;
 };
