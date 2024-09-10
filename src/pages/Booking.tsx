@@ -1,20 +1,38 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
+import { useGetAllFacilitiesQuery } from "../redux/features/facility/FacilityApi";
+import { useCreateBookingMutation } from "../redux/features/booking/bookingApi";
+import { toast } from "sonner";
 
 const Booking = () => {
-  // State to manage form data and selected facility
+  // State to manage selected facility and booking details
   const [selectedFacility, setSelectedFacility] = useState("");
+  const [facilityDetails, setFacilityDetails] = useState({
+    name: "",
+    payableAmount: "",
+  });
   const [bookingDetails, setBookingDetails] = useState({
     date: "",
     startTime: "",
     endTime: "",
   });
+  const { data: facilities = [] } = useGetAllFacilitiesQuery(undefined);
+  const [createBooking] = useCreateBookingMutation();
 
-  // Example facilities data
-  const facilities = [
-    { id: 1, name: "Facility A", details: "Description of Facility A" },
-    { id: 2, name: "Facility B", details: "Description of Facility B" },
-  ];
+  // Update facility details when a facility is selected
+  useEffect(() => {
+    if (selectedFacility) {
+      const facility = facilities?.data?.find(
+        (f) => f.name === selectedFacility
+      );
+      if (facility) {
+        setFacilityDetails({
+          name: facility.name,
+          payableAmount: facility.pricePerHour,
+        });
+      }
+    }
+  }, [selectedFacility, facilities]);
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -25,9 +43,24 @@ const Booking = () => {
     }));
   };
 
+  // Function to submit the booking data
+  const handleSubmit = async () => {
+    const bookingData = {
+      ...bookingDetails,
+      name: facilityDetails.name,
+      payableAmount: facilityDetails.payableAmount,
+    };
+
+    try {
+      await createBooking(bookingData).unwrap();
+      toast.success("Booking Confirmed", { duration: 1000 });
+    } catch (error) {
+      console.error("Failed to create booking", error);
+    }
+  };
+
   return (
     <div className="container mx-auto p-20">
-      {/* Booking Page Title */}
       <h1 className="text-2xl font-bold mb-6">Booking Page</h1>
 
       {/* Facility Selection */}
@@ -43,15 +76,23 @@ const Booking = () => {
           className="w-full p-2 border rounded mb-2"
         >
           <option value="">Select a facility</option>
-          {facilities.map((facility) => (
-            <option key={facility.id} value={facility.name}>
+          {facilities?.data?.map((facility) => (
+            <option key={facility._id} value={facility.name}>
               {facility.name}
             </option>
           ))}
         </select>
         {selectedFacility && (
-          <p className="text-sm">
-            {facilities.find((f) => f.name === selectedFacility)?.details}
+          <p className="text-sm my-2">
+            <span className="font-semibold">Description: </span>
+            {
+              facilities?.data?.find((f) => f.name === selectedFacility)
+                ?.description
+            }
+            <p className="mt-2">
+              <span className="font-semibold">Price Per Hour: </span>
+              {facilityDetails.payableAmount}
+            </p>
           </p>
         )}
       </div>
@@ -76,10 +117,10 @@ const Booking = () => {
         <h2 className="text-lg font-bold mb-2">Available Slots</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className=" bg-gray-600 text-white p-4 text-center rounded">
-            02.00 - 13.00
+            02:00 - 13:00
           </div>
           <div className="bg-gray-600 text-white p-4 text-center rounded">
-            15.00 - 23.59
+            15:00 - 23:59
           </div>
         </div>
       </div>
@@ -120,13 +161,13 @@ const Booking = () => {
         </div>
       </div>
 
-      {/* Proceed to Pay Button */}
-
-      <Link to={"/payment"}>
-        <button className="w-full p-4 bg-gray-600 text-white rounded">
-          Confirm Booking
-        </button>
-      </Link>
+      {/* Confirm Booking and Proceed to Pay */}
+      <button
+        className="w-full p-4 bg-gray-600 text-white rounded"
+        onClick={handleSubmit}
+      >
+        Confirm Booking
+      </button>
     </div>
   );
 };

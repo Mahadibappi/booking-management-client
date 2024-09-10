@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetFacilityByIdQuery } from "../redux/features/facility/FacilityApi";
 
 const FacilityDetail: React.FC = () => {
@@ -44,6 +44,11 @@ const FacilityDetail: React.FC = () => {
           <span className="font-semibold">Location:</span>{" "}
           {facility.data.location}
         </p>
+        <div className="card-actions justify-center">
+          <Link to={`/booking`}>
+            <button className="btn btn-primary w-full">Book Now</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
