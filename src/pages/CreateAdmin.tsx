@@ -8,6 +8,8 @@ const CreateFacility: React.FC = () => {
     role: "",
     image: null,
   });
+  const [picture, setPicture] = useState();
+  console.log(picture);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,16 +20,14 @@ const CreateFacility: React.FC = () => {
   };
 
   const handleImageChange = (e) => {
-    setFacilityData({
-      ...facilityData,
-      image: e.target.files[0],
-    });
+    const file = e.target.files[0];
+    setPicture(file);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(facilityData);
+    const formData = new FormData();
+    formData.append("image", picture);
   };
 
   return (

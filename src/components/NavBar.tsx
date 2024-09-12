@@ -65,7 +65,7 @@ const NavBar: React.FC = () => {
             </li>
             <li>
               <Link
-                to={"/admin"}
+                to={"/admin/create-facility"}
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"

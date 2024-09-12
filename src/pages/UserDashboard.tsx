@@ -1,6 +1,13 @@
 import React from "react";
 import { useGetAllBookingsQuery } from "../redux/features/booking/bookingApi";
 
+type Booking = {
+  _id: string;
+  name: string;
+  startTime: string;
+  endTime: string;
+  payableAmount: number;
+};
 const UserDashboard: React.FC = () => {
   const { data: AllBooking } = useGetAllBookingsQuery(undefined);
   console.log(AllBooking);
@@ -35,9 +42,9 @@ const UserDashboard: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {AllBooking?.data?.map((booking) => (
+          {AllBooking?.data?.map((booking: Booking) => (
             <tr
-              key={booking.id}
+              key={booking._id}
               className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
             >
               <th

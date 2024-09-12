@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useCreateFacilityMutation } from "../redux/features/facility/FacilityApi";
 import { toast } from "sonner";
+
 import { TFacilityData } from "../types/Types";
 
 const CreateFacility: React.FC = () => {
@@ -9,11 +10,9 @@ const CreateFacility: React.FC = () => {
     description: "",
     pricePerHour: "",
     location: "",
-    image: "",
+    image: null,
   });
-  console.log(facilityData);
   const [create] = useCreateFacilityMutation();
-
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -25,24 +24,30 @@ const CreateFacility: React.FC = () => {
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      const imageUrl = URL.createObjectURL(file);
+    if (e.target.files && e.target.files[0]) {
       setFacilityData((prevData) => ({
         ...prevData,
-        image: imageUrl,
+        image: e.target.files![0],
       }));
     }
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", facilityData.name);
+    formData.append("description", facilityData.description);
+    formData.append("pricePerHour", facilityData.pricePerHour.toString());
+    formData.append("location", facilityData.location);
+    if (facilityData.image) {
+      formData.append("image", facilityData.image);
+    }
     try {
-      await create(facilityData);
-      toast.success("Facility Created Successfully", {
-        duration: 2000,
-        position: "bottom-right",
-      });
+      await create(formData);
+      // toast.success("Facility Created Successfully", {
+      //   duration: 2000,
+      //   position: "bottom-right",
+      // });
     } catch (error) {
       console.log(error);
     }
