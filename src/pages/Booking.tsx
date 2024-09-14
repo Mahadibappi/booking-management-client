@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
 import { useGetAllFacilitiesQuery } from "../redux/features/facility/FacilityApi";
 import { useCreateBookingMutation } from "../redux/features/booking/bookingApi";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Booking = () => {
   // State to manage selected facility and booking details
   const [selectedFacility, setSelectedFacility] = useState("");
+  const navigate = useNavigate();
   const [facilityDetails, setFacilityDetails] = useState({
     name: "",
     payableAmount: "",
@@ -23,7 +24,7 @@ const Booking = () => {
   useEffect(() => {
     if (selectedFacility) {
       const facility = facilities?.data?.find(
-        (f) => f.name === selectedFacility
+        (f: any) => f.name === selectedFacility
       );
       if (facility) {
         setFacilityDetails({
@@ -43,17 +44,40 @@ const Booking = () => {
     }));
   };
 
+  const calculationDuration = (startTime: string, endTime: string) => {
+    const start = new Date(`1970-01-01T${startTime}:00`);
+    const end = new Date(`1970-01-01T${endTime}:00`);
+    let durationHours = (end.getTime() - start.getTime()) / (100 * 60 * 60);
+    if (durationHours < 0) {
+      durationHours += 24;
+    }
+    return durationHours;
+  };
+
   // Function to submit the booking data
   const handleSubmit = async () => {
+    const duration = calculationDuration(
+      bookingDetails.startTime,
+      bookingDetails.endTime
+    );
+    const totalPay = duration * Number(facilityDetails.payableAmount);
     const bookingData = {
       ...bookingDetails,
       name: facilityDetails.name,
-      payableAmount: facilityDetails.payableAmount,
+      payableAmount: totalPay,
     };
 
     try {
-      await createBooking(bookingData).unwrap();
+      const response = await createBooking(bookingData).unwrap();
+      console.log(response.data._id);
       toast.success("Booking Confirmed", { duration: 1000 });
+      navigate(`/payment/${response.data._id}`, {
+        state: {
+          bookingId: response.data._id, // Assuming the booking response has an _id
+          payableAmount: totalPay,
+          name: facilityDetails.name,
+        },
+      });
     } catch (error) {
       console.error("Failed to create booking", error);
     }
@@ -106,6 +130,7 @@ const Booking = () => {
           value={bookingDetails.date}
           onChange={handleInputChange}
           className="flex-1 p-2 border border-black rounded bg-gray-600 text-white"
+          placeholder="select date"
         />
         <button className="ml-2 p-2 bg-gray-900 text-white rounded">
           Check Availability

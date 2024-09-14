@@ -54,9 +54,9 @@ const FacilityList: React.FC = () => {
           }
         >
           <option value="">Filter by Price</option>
-          <option value="50">Under $50</option>
-          <option value="100">Under $100</option>
-          <option value="200">Under $200</option>
+          <option value="550">Under $550</option>
+          <option value="1000">Under $1000</option>
+          <option value="600">Under $600</option>
         </select>
       </div>
 

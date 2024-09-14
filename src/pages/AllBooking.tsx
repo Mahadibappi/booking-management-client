@@ -12,7 +12,7 @@ const AllBooking: React.FC = () => {
   const { data: AllBooking } = useGetAllBookingsQuery(undefined);
 
   return (
-    <div className="relative mx-auto  mt-6 ">
+    <div className="relative mx-auto  mt-6 p-2">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>

@@ -13,13 +13,14 @@ const CreateFacility: React.FC = () => {
     image: null,
   });
   const [create] = useCreateFacilityMutation();
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFacilityData((prevData) => ({
       ...prevData,
-      [name]: name === "pricePerHour" ? Number(value) : value,
+      [name]: value,
     }));
   };
 
@@ -42,12 +43,13 @@ const CreateFacility: React.FC = () => {
     if (facilityData.image) {
       formData.append("image", facilityData.image);
     }
+
     try {
       await create(formData);
-      // toast.success("Facility Created Successfully", {
-      //   duration: 2000,
-      //   position: "bottom-right",
-      // });
+      toast.success("Facility Created Successfully", {
+        duration: 2000,
+        position: "bottom-right",
+      });
     } catch (error) {
       console.log(error);
     }

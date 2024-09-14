@@ -21,8 +21,8 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState<boolean>(false);
   const [formData, setFormData] = useState<TFormData>({
-    email: "web@programming-hero.com",
-    password: "programming-ehero",
+    email: "bappe55@gmail.com",
+    password: "123456",
   });
   const [login] = useLoginMutation();
 

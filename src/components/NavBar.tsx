@@ -106,16 +106,6 @@ const NavBar: React.FC = () => {
           </ul>
         </div>
         <div className="flex items-center md:order-2 space-x-3 ">
-          <div className="px-2  flex items-center space-x-2 ">
-            <img
-              className="w-8 h-8 rounded-full "
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU21DjrD8ExS5vLuTv5SAE1h9fJRjJP2OfSA&s"
-              alt="user photo"
-            />
-
-            <span className="block text-sm text-white">Bonnie Green</span>
-          </div>
-
           <div className="flex space-x-2">
             <Link to={"/login"}>
               <button
