@@ -35,7 +35,7 @@ const AdminDashboard: React.FC = () => {
       <div className="flex-1 ">
         <div>
           <div className="w-full mx-auto bg-gradient-to-r from-[#a2c280] via-[#7487d0] to-[#4990e2] text-white p-10 text-center  rounded-md shadow-lg">
-            <h2 className="text-2xl font-semibold text-white">Hello Mahadi</h2>
+            <h2 className="text-2xl font-semibold text-white">Hello Guest</h2>
             <h3 className="text-4xl font-bold mb-4">
               Welcome <span className="text-[#f4e7d3]">To Admin Dashboard</span>
             </h3>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { useGetAllFacilitiesQuery } from "../redux/features/facility/FacilityApi";
 import { useCreateBookingMutation } from "../redux/features/booking/bookingApi";
@@ -36,7 +37,8 @@ const Booking = () => {
   }, [selectedFacility, facilities]);
 
   // Handle form input changes
-  const handleInputChange = (e) => {
+
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setBookingDetails((prevDetails) => ({
       ...prevDetails,
@@ -100,7 +102,7 @@ const Booking = () => {
           className="w-full p-2 border rounded mb-2"
         >
           <option value="">Select a facility</option>
-          {facilities?.data?.map((facility) => (
+          {facilities?.data?.map((facility: any) => (
             <option key={facility._id} value={facility.name}>
               {facility.name}
             </option>
@@ -110,7 +112,7 @@ const Booking = () => {
           <p className="text-sm my-2">
             <span className="font-semibold">Description: </span>
             {
-              facilities?.data?.find((f) => f.name === selectedFacility)
+              facilities?.data?.find((f: any) => f.name === selectedFacility)
                 ?.description
             }
             <p className="mt-2">
