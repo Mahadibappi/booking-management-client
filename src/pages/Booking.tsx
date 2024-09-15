@@ -124,16 +124,19 @@ const Booking = () => {
       </div>
 
       {/* Date Selection */}
-      <div className="flex items-center mb-6">
-        <input
-          type="date"
-          name="date"
-          id="date"
-          value={bookingDetails.date}
-          onChange={handleInputChange}
-          className="flex-1 p-2 border border-black rounded bg-gray-600 text-white"
-          placeholder="select date"
-        />
+      <div className="flex items-center justify-between mb-6">
+        <div className="">
+          <h2 className="font-semibold my-1">Select Date </h2>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            value={bookingDetails.date}
+            onChange={handleInputChange}
+            className="flex-1 p-2 border border-black rounded bg-gray-600 text-white "
+            placeholder="select date"
+          />
+        </div>
         <button className="ml-2 p-2 bg-gray-900 text-white rounded">
           Check Availability
         </button>

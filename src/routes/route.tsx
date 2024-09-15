@@ -10,10 +10,10 @@ import Payment from "../pages/Payment";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import UserDashboard from "../pages/UserDashboard";
-import AdminDashboard from "../pages/AdminDashboard";
 import CreateFacility from "../pages/CreateFacility";
 import AllBooking from "../pages/AllBooking";
 import CreateAdmin from "../pages/CreateAdmin";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <App />,
       },
+
       {
         path: "/login",
         element: <Login />,
@@ -40,18 +41,7 @@ const router = createBrowserRouter([
         path: "/facility/:id",
         element: <FacilityDetail />,
       },
-      {
-        path: "/booking",
-        element: <Booking />,
-      },
-      {
-        path: "/payment/:id",
-        element: <Payment />,
-      },
-      {
-        path: "/user",
-        element: <UserDashboard />,
-      },
+
       {
         path: "/about",
         element: <About />,
@@ -60,9 +50,10 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+
       {
         path: "/admin",
-        element: <AdminDashboard />,
+        element: <PrivateRoute />,
         children: [
           {
             path: "create-facility",

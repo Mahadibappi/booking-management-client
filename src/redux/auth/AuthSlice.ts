@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export type TUser = {
   email: string;
   password: string;
+  name: string;
 };
 type TInitialState = {
   user: null | TUser;
@@ -19,6 +20,7 @@ const AuthSlice = createSlice({
   reducers: {
     loginUser: (state, action) => {
       const { user, token } = action.payload;
+
       state.user = user;
       state.token = token;
     },
